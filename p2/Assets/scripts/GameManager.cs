@@ -6,6 +6,13 @@ public class GameManager : MonoBehaviour
 {
     public Transform targetPlayer;
     public LayerMask world;
+    public Vector2[] positions;
+    bool moveUp,moveDown,moveLeft,moveRight;
+
+    private void Update() 
+    {
+                
+    }
     //targetPlayer Movement Functions
     public void Move_UP()
     {
