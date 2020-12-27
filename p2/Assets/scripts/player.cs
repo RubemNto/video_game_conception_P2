@@ -6,6 +6,9 @@ public class player : MonoBehaviour
 {
     public Transform target;
     public float movementSpeed;
+    public bool grab = false;
+    public GameObject contactObject;
+    public GameObject collectedObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,5 +19,21 @@ public class player : MonoBehaviour
     void FixedUpdate()
     {
         transform.position = Vector2.MoveTowards(transform.position,target.position,movementSpeed*Time.deltaTime);
+    }
+
+    void OnTriggerEnter2D(Collider2D other) 
+    {
+        if(other.gameObject.tag=="object")
+        {
+            contactObject = other.gameObject;
+        }        
+    }
+    void OnTriggerExit2D(Collider2D other) 
+    {
+        if(other.gameObject.tag=="object")
+        {
+            contactObject.GetComponent<objects>().rotate = false;
+            contactObject = null;
+        }        
     }
 }
