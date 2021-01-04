@@ -9,36 +9,31 @@ public class GameManager : MonoBehaviour
     public Vector2[] positions;
     public player playerData;
     bool moveUp,moveDown,moveLeft,moveRight;
-
-    private void Update() 
-    {
-                
-    }
     //targetPlayer Movement Functions
     public void Move_UP()
     {
-        if(Physics2D.OverlapCircle(targetPlayer.position+new Vector3(0,1,0),0.1f,world))
+        if(!Physics2D.OverlapCircle(targetPlayer.position+new Vector3(0,1,0),0.1f,world))
         {
             targetPlayer.position = targetPlayer.position+new Vector3(0,1,0);
         }
     }
     public void Move_DOWN()
     {
-        if(Physics2D.OverlapCircle(targetPlayer.position+new Vector3(0,-1,0),0.1f,world))
+        if(!Physics2D.OverlapCircle(targetPlayer.position+new Vector3(0,-1,0),0.1f,world))
         {
             targetPlayer.position = targetPlayer.position+new Vector3(0,-1,0);
         }
     }
     public void Move_LEFT()
     {
-        if(Physics2D.OverlapCircle(targetPlayer.position+new Vector3(-1,0,0),0.1f,world))
+        if(!Physics2D.OverlapCircle(targetPlayer.position+new Vector3(-1,0,0),0.1f,world))
         {
             targetPlayer.position = targetPlayer.position+new Vector3(-1,0,0); 
         }
     }
     public void Move_RIGHT()
     {
-        if(Physics2D.OverlapCircle(targetPlayer.position+new Vector3(1,0,0),0.1f,world))
+        if(!Physics2D.OverlapCircle(targetPlayer.position+new Vector3(1,0,0),0.1f,world))
         {
             targetPlayer.position = targetPlayer.position+new Vector3(1,0,0);
         }
@@ -55,14 +50,14 @@ public class GameManager : MonoBehaviour
         if(playerData.contactObject !=null && playerData.collectedObject == null)//found object with nothing in hand
         {
             //collect object
-            Debug.Log("Here 1");
+            //Debug.Log("Here 1");
             playerData.collectedObject = playerData.contactObject;
             playerData.collectedObject.transform.SetParent(GameObject.Find("player").transform);
             playerData.collectedObject.SetActive(false);
         }else if(playerData.contactObject == null && playerData.collectedObject != null)//found nothing but have something in hand
         {
             //drop object
-            Debug.Log("Here 2");
+            //Debug.Log("Here 2");
             playerData.collectedObject.transform.SetParent(null);
             playerData.collectedObject.SetActive(true);
             playerData.collectedObject = null;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class player : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class player : MonoBehaviour
         if(other.gameObject.tag=="object")
         {
             contactObject = other.gameObject;
+        }
+
+        if(other.gameObject.tag == "exit")
+        {
+            SceneManager.LoadScene(0);
         }        
     }
     void OnTriggerExit2D(Collider2D other) 
