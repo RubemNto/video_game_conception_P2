@@ -7,7 +7,7 @@ public class player : MonoBehaviour
 {
     public Transform target;
     public float movementSpeed;
-    public bool grab = false;
+    //public bool grab = false;
     public GameObject contactObject;
     public GameObject collectedObject;
     // Start is called before the first frame update
@@ -19,27 +19,27 @@ public class player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = Vector2.MoveTowards(transform.position,target.position,movementSpeed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position,target.position,movementSpeed*Time.fixedDeltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
-    {
-        if(other.gameObject.tag=="object")
-        {
-            contactObject = other.gameObject;
-        }
+    // void OnTriggerEnter2D(Collider2D other) 
+    // {
+    //     if(other.gameObject.tag=="object")
+    //     {
+    //         contactObject = other.gameObject;
+    //     }
 
-        if(other.gameObject.tag == "exit")
-        {
-            SceneManager.LoadScene(0);
-        }        
-    }
-    void OnTriggerExit2D(Collider2D other) 
-    {
-        if(other.gameObject.tag=="object")
-        {
-            contactObject.GetComponent<objects>().rotate = false;
-            contactObject = null;
-        }        
-    }
+    //     if(other.gameObject.tag == "exit")
+    //     {
+    //         SceneManager.LoadScene(0);
+    //     }        
+    // }
+    // void OnTriggerExit2D(Collider2D other) 
+    // {
+    //     if(other.gameObject.tag=="object")
+    //     {
+    //         contactObject.GetComponent<objects>().rotate = false;
+    //         contactObject = null;
+    //     }        
+    // }
 }
